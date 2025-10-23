@@ -324,12 +324,6 @@ WeChat2-5: 测试账号
 </details>
 
 <details>
-<summary><b>副本会占用多少空间？</b></summary>
-
-每个副本约 300MB（和原版微信大小相同）。5 个副本总共约 1.5GB。
-</details>
-
-<details>
 <summary><b>数据会混淆吗？</b></summary>
 
 不会。每个副本使用独立的 Bundle ID 和数据目录，数据完全隔离。
