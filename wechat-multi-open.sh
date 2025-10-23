@@ -424,9 +424,8 @@ customize_icon() {
         return
     fi
 
-    # 获取脚本所在目录
-    local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    local icon_dir="${script_dir}/icon"
+    # 使用相对路径获取 icon 目录
+    local icon_dir="$(dirname "${BASH_SOURCE[0]}")/icon"
 
     # 检查 icon 目录是否存在
     if [ ! -d "$icon_dir" ]; then
