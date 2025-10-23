@@ -436,7 +436,6 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 
 - **GitHub Issues**: [提交问题](https://github.com/nullbyte-lab/wechat-multi-open/issues)
 - **Discussions**: [参与讨论](https://github.com/nullbyte-lab/wechat-multi-open/discussions)
-- **Email**: dingzi@gmail.com
 
 ---
 
