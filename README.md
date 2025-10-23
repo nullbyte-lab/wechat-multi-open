@@ -153,31 +153,11 @@ cd wechat-multi-open
 
 #### 7. 自定义副本图标
 
-为不同的副本替换个性化图标，便于区分。
+为不同副本替换个性化图标，便于区分。
 
-**特点**：
-- 内置 6 款精选图标
-- 支持批量应用
-- 自动刷新 Dock
+**特点**：内置 6 款精选图标，支持批量应用，自动清除缓存
 
-**示例**：
-```
-可用图标:
-  [1] wechat-blue
-  [2] wechat-classic
-  [3] wechat-dark
-  [4] wechat-gradient
-  [5] wechat-minimal
-  [6] wechat-purple
-
-请选择图标编号 [1-6]: 1
-请输入要应用图标的副本编号: 2 3 4
-```
-
-**添加自定义图标**：
-1. 从 [macosicons.com](https://macosicons.com) 下载 .icns 文件
-2. 放入项目的 `icon/` 目录
-3. 脚本会自动识别新图标
+**添加自定义图标**：从 [macosicons.com](https://macosicons.com) 下载 .icns 文件放入 `icon/` 目录即可
 
 ---
 

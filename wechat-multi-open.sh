@@ -512,18 +512,35 @@ customize_icon() {
     info "正在替换图标..."
 
     for i in "${to_customize[@]}"; do
-        local target_icon="/Applications/WeChat${i}.app/Contents/Resources/AppIcon.icns"
+        local app="/Applications/WeChat${i}.app"
+        local target_icon="$app/Contents/Resources/AppIcon.icns"
         echo -n "  WeChat${i}.app..."
+
+        # 替换图标文件
         sudo cp "$selected_icon" "$target_icon"
+
+        # 清除 app 的图标缓存
+        sudo rm -rf "$app/Icon$'\r'" 2>/dev/null || true
+
+        # 更新 app 的修改时间
+        sudo touch "$app"
+
         echo -e " ${GREEN}完成${NC}"
     done
 
     echo ""
-    info "正在刷新 Dock..."
+    info "正在清除系统图标缓存并刷新 Dock..."
+
+    # 清除系统图标缓存
+    sudo rm -rf /Library/Caches/com.apple.iconservices.store 2>/dev/null || true
+    sudo find /private/var/folders/ -name com.apple.iconservices -exec rm -rf {} \; 2>/dev/null || true
+
+    # 刷新 Dock
     killall Dock 2>/dev/null || true
 
     echo ""
     info "图标替换完成！Dock 已刷新"
+    info "提示: 如果图标未立即更新，请稍等几秒或重启 Finder"
 }
 
 # ==================== 交互式菜单 ====================
