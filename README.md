@@ -31,6 +31,14 @@
 - **彩色输出** - 清晰易读的彩色交互界面
 - **安全保护** - 二次确认、错误处理、权限隔离
 
+### 效果展示
+
+<p align="center">
+  <img src="screenshots/dock-demo.png" alt="多个微信实例同时运行" width="600">
+  <br>
+  <em>多个微信实例同时运行在 Dock 栏</em>
+</p>
+
 ---
 
 ## Installation
