@@ -1,10 +1,10 @@
-# 🚀 WeChat Multi-Instance Manager for macOS
+# WeChat Multi-Instance Manager for macOS
 
 <p align="center">
   <img src="https://img.shields.io/badge/macOS-10.15+-blue?logo=apple" alt="macOS">
   <img src="https://img.shields.io/badge/WeChat-4.0.6.17+-green?logo=wechat" alt="WeChat">
   <img src="https://img.shields.io/badge/license-MIT-orange" alt="License">
-  <img src="https://img.shields.io/github/stars/你的用户名/wechat-multi-open?style=social" alt="Stars">
+  <img src="https://img.shields.io/github/stars/nullbyte-lab/wechat-multi-open?style=social" alt="Stars">
 </p>
 
 <p align="center">
@@ -12,34 +12,34 @@
 </p>
 
 <p align="center">
-  <a href="#-features">功能特性</a> •
-  <a href="#-installation">安装使用</a> •
-  <a href="#-usage">使用说明</a> •
-  <a href="#-demo">演示</a> •
-  <a href="#-faq">常见问题</a>
+  <a href="#features">功能特性</a> •
+  <a href="#installation">安装使用</a> •
+  <a href="#usage">使用说明</a> •
+  <a href="#demo">演示</a> •
+  <a href="#faq">常见问题</a>
 </p>
 
 ---
 
-## ✨ Features
+## Features
 
-- 🎯 **交互式菜单** - 傻瓜式操作，无需记忆命令
-- 🔍 **智能检测** - 自动扫描已有副本，避免重复创建
-- ➕ **增量创建** - 只创建缺失的实例，节省时间
-- 🎪 **选择启动** - 指定启动哪些实例，支持多选和 `all`
-- 🗑️ **灵活删除** - 可删除指定副本或全部清理
-- 🎨 **彩色输出** - 清晰易读的彩色交互界面
-- 🛡️ **安全保护** - 二次确认、错误处理、权限隔离
+- **交互式菜单** - 傻瓜式操作，无需记忆命令
+- **智能检测** - 自动扫描已有副本，避免重复创建
+- **增量创建** - 只创建缺失的实例，节省时间
+- **选择启动** - 指定启动哪些实例，支持多选和 `all`
+- **灵活删除** - 可删除指定副本或全部清理
+- **彩色输出** - 清晰易读的彩色交互界面
+- **安全保护** - 二次确认、错误处理、权限隔离
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Quick Install
 
 ```bash
 # 下载脚本
-curl -fsSL https://raw.githubusercontent.com/你的用户名/wechat-multi-open/main/wechat-multi-open.sh -o ~/wechat-multi.sh
+curl -fsSL https://raw.githubusercontent.com/nullbyte-lab/wechat-multi-open/main/wechat-multi-open.sh -o ~/wechat-multi.sh
 
 # 添加执行权限
 chmod +x ~/wechat-multi.sh
@@ -52,7 +52,7 @@ chmod +x ~/wechat-multi.sh
 
 ```bash
 # 克隆仓库
-git clone https://github.com/你的用户名/wechat-multi-open.git
+git clone https://github.com/nullbyte-lab/wechat-multi-open.git
 
 # 进入目录
 cd wechat-multi-open
@@ -63,7 +63,7 @@ cd wechat-multi-open
 
 ---
 
-## 🎮 Usage
+## Usage
 
 ### 主菜单
 
@@ -98,11 +98,11 @@ cd wechat-multi-open
 
 ### 功能说明
 
-#### 1️⃣ 查看当前状态
+#### 1. 查看当前状态
 
 实时显示已创建的副本数量和列表。
 
-#### 2️⃣ 设置微信实例数量
+#### 2. 设置微信实例数量
 
 输入目标数量（含原版），脚本会自动计算并创建缺失的副本。
 
@@ -113,7 +113,7 @@ cd wechat-multi-open
 结果: 只创建 2 个新副本（WeChat4、WeChat5）
 ```
 
-#### 3️⃣ 删除指定副本
+#### 3. 删除指定副本
 
 选择要删除的副本编号（支持多选）。
 
@@ -123,11 +123,11 @@ cd wechat-multi-open
 结果: 删除 WeChat3、WeChat5、WeChat7
 ```
 
-#### 4️⃣ 删除所有副本（恢复单开）
+#### 4. 删除所有副本（恢复单开）
 
 一键删除所有副本，恢复到只有原版微信的状态。
 
-#### 5️⃣ 选择启动微信实例
+#### 5. 选择启动微信实例
 
 指定要启动的实例。
 
@@ -137,13 +137,13 @@ cd wechat-multi-open
 输入: all      # 启动所有实例
 ```
 
-#### 6️⃣ 停止所有微信进程
+#### 6. 停止所有微信进程
 
 批量停止所有正在运行的微信实例。
 
 ---
 
-## 🎬 Demo
+## Demo
 
 ### 创建副本
 
@@ -208,7 +208,7 @@ $ ./wechat-multi-open.sh
 
 ---
 
-## 🔧 Technical Details
+## Technical Details
 
 ### Bundle ID 隔离
 
@@ -252,7 +252,7 @@ codesign --force --deep --sign - /Applications/WeChat2.app
 
 ---
 
-## 📋 Requirements
+## Requirements
 
 | 项目 | 要求 |
 |------|------|
@@ -273,7 +273,7 @@ xcode-select --install
 
 ---
 
-## 💡 Use Cases
+## Use Cases
 
 ### 案例 1: 工作生活分离
 
@@ -315,7 +315,7 @@ WeChat2-5: 测试账号
 
 ---
 
-## ❓ FAQ
+## FAQ
 
 <details>
 <summary><b>为什么需要 sudo 权限？</b></summary>
@@ -367,7 +367,7 @@ if [[ "$count" =~ ^[0-9]+$ ]] && [ "$count" -ge 2 ] && [ "$count" -le 50 ]; then
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] 支持自定义副本名称
 - [ ] 支持图标替换（区分不同账号）
@@ -378,7 +378,7 @@ if [[ "$count" =~ ^[0-9]+$ ]] && [ "$count" -ge 2 ] && [ "$count" -le 50 ]; then
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 欢迎贡献代码、报告问题、提出建议！
 
@@ -386,7 +386,7 @@ if [[ "$count" =~ ^[0-9]+$ ]] && [ "$count" -ge 2 ] && [ "$count" -le 50 ]; then
 
 ```bash
 # Fork 项目
-git clone https://github.com/你的用户名/wechat-multi-open.git
+git clone https://github.com/nullbyte-lab/wechat-multi-open.git
 cd wechat-multi-open
 
 # 创建分支
@@ -410,13 +410,13 @@ git push origin feature/your-feature
 
 ---
 
-## 📜 License
+## License
 
 MIT License - 详见 [LICENSE](LICENSE) 文件
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - 感谢所有贡献者
 - 灵感来源于各种微信多开教程
@@ -424,24 +424,24 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 
 ---
 
-## 📞 Contact
+## Contact
 
-- **GitHub Issues**: [提交问题](https://github.com/你的用户名/wechat-multi-open/issues)
-- **Discussions**: [参与讨论](https://github.com/你的用户名/wechat-multi-open/discussions)
-- **Email**: your@email.com
+- **GitHub Issues**: [提交问题](https://github.com/nullbyte-lab/wechat-multi-open/issues)
+- **Discussions**: [参与讨论](https://github.com/nullbyte-lab/wechat-multi-open/discussions)
+- **Email**: dingzi@gmail.com
 
 ---
 
-## ⭐ Star History
+## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=你的用户名/wechat-multi-open&type=Date)](https://star-history.com/#你的用户名/wechat-multi-open&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=nullbyte-lab/wechat-multi-open&type=Date)](https://star-history.com/#nullbyte-lab/wechat-multi-open&Date)
 
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/你的用户名">@你的用户名</a>
+  Made with love by <a href="https://github.com/nullbyte-lab">@nullbyte-lab</a>
 </p>
 
 <p align="center">
-  <b>如果这个项目对你有帮助，请给个 ⭐️ Star！</b>
+  <b>如果这个项目对你有帮助，请给个 Star！</b>
 </p>
