@@ -414,6 +414,119 @@ stop_all() {
     info "所有微信进程已停止"
 }
 
+# 自定义副本图标
+customize_icon() {
+    local copies=($(scan_wechat_copies))
+    local count="${#copies[@]}"
+
+    if [ "$count" -eq 0 ]; then
+        warn "当前没有任何副本"
+        return
+    fi
+
+    # 获取脚本所在目录
+    local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    local icon_dir="${script_dir}/icon"
+
+    # 检查 icon 目录是否存在
+    if [ ! -d "$icon_dir" ]; then
+        warn "未找到 icon 目录: $icon_dir"
+        return
+    fi
+
+    # 扫描可用图标
+    local icons=()
+    local icon_names=()
+    while IFS= read -r -d '' icon_file; do
+        icons+=("$icon_file")
+        icon_names+=("$(basename "$icon_file" .icns)")
+    done < <(find "$icon_dir" -name "*.icns" -type f -print0 | sort -z)
+
+    if [ "${#icons[@]}" -eq 0 ]; then
+        warn "icon 目录中没有找到 .icns 文件"
+        return
+    fi
+
+    echo ""
+    title "=========================================="
+    title "  自定义副本图标"
+    title "=========================================="
+    echo ""
+    info "可用图标:"
+    for i in "${!icons[@]}"; do
+        echo "  [$((i+1))] ${icon_names[$i]}"
+    done
+    echo ""
+
+    read -p "$(echo -e ${CYAN}请选择图标编号 [1-${#icons[@]}]: ${NC})" icon_choice
+
+    if ! [[ "$icon_choice" =~ ^[0-9]+$ ]] || [ "$icon_choice" -lt 1 ] || [ "$icon_choice" -gt "${#icons[@]}" ]; then
+        warn "无效的图标编号"
+        return
+    fi
+
+    local selected_icon="${icons[$((icon_choice-1))]}"
+
+    echo ""
+    info "当前副本列表:"
+    for i in "${copies[@]}"; do
+        echo "  [$i] WeChat${i}.app"
+    done
+    echo ""
+
+    read -p "$(echo -e ${CYAN}请输入要应用图标的副本编号（多个用空格分隔，如: 2 3 4）: ${NC})" input
+
+    if [ -z "$input" ]; then
+        warn "未输入任何编号，已取消"
+        return
+    fi
+
+    # 解析输入
+    local to_customize=()
+    for num in $input; do
+        if [[ "$num" =~ ^[0-9]+$ ]] && [ -d "/Applications/WeChat${num}.app" ]; then
+            to_customize+=("$num")
+        else
+            warn "忽略无效编号: $num"
+        fi
+    done
+
+    if [ "${#to_customize[@]}" -eq 0 ]; then
+        warn "没有有效的副本编号"
+        return
+    fi
+
+    echo ""
+    info "将为以下副本应用图标: ${icon_names[$((icon_choice-1))]}"
+    for i in "${to_customize[@]}"; do
+        echo "   - WeChat${i}.app"
+    done
+    echo ""
+
+    read -p "$(echo -e ${YELLOW}确认替换？[y/N]: ${NC})" confirm
+    if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+        warn "已取消替换"
+        return
+    fi
+
+    echo ""
+    info "正在替换图标..."
+
+    for i in "${to_customize[@]}"; do
+        local target_icon="/Applications/WeChat${i}.app/Contents/Resources/AppIcon.icns"
+        echo -n "  WeChat${i}.app..."
+        sudo cp "$selected_icon" "$target_icon"
+        echo -e " ${GREEN}完成${NC}"
+    done
+
+    echo ""
+    info "正在刷新 Dock..."
+    killall Dock 2>/dev/null || true
+
+    echo ""
+    info "图标替换完成！Dock 已刷新"
+}
+
 # ==================== 交互式菜单 ====================
 show_menu() {
     echo ""
@@ -424,7 +537,8 @@ show_menu() {
     echo "  4) 删除所有副本（恢复单开）"
     echo "  5) 选择启动微信实例"
     echo "  6) 停止所有微信进程"
-    echo "  7) 退出"
+    echo "  7) 自定义副本图标"
+    echo "  8) 退出"
     echo ""
 }
 
@@ -437,7 +551,7 @@ main() {
         show_status
         show_menu
 
-        read -p "$(echo -e ${CYAN}请输入选项 [1-7]: ${NC})" choice
+        read -p "$(echo -e ${CYAN}请输入选项 [1-8]: ${NC})" choice
 
         case "$choice" in
             1)
@@ -471,6 +585,10 @@ main() {
                 read -p "$(echo -e ${CYAN}按回车继续...${NC})"
                 ;;
             7)
+                customize_icon
+                read -p "$(echo -e ${CYAN}按回车继续...${NC})"
+                ;;
+            8)
                 echo ""
                 info "再见！"
                 exit 0
